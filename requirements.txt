@@ -1,0 +1,7 @@
+numpy
+pandas
+rasterio
+tqdm
+torch
+segmentation-models-pytorch
+jupyter

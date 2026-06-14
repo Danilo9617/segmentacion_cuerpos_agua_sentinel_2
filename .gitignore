@@ -1,0 +1,27 @@
+# Entornos virtuales
+env/
+venv/
+.venv/
+
+# Carpetas de datos pesados (Locales)
+data/
+dataset_preprocesado/
+raw_data/
+Bibliografia/
+
+# Pesos del modelo de Deep Learning
+*.pth
+*.pkl
+weights/
+
+# Archivos temporales de Jupyter y VS Code
+.ipynb_checkpoints/
+.vscode/
+__pycache__/
+*.pyc
+
+# Salidas locales
+pred_mask_example.tif
+
+# Documentos privados
+Challenge_Tecnico_Segmentacion_Agua_Sentinel2 1.pdf
