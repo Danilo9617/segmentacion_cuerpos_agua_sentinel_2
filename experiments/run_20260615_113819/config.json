@@ -1,0 +1,33 @@
+{
+  "train_img_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\data\\dset-s2\\tra_scene",
+  "train_mask_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\data\\dset-s2\\tra_truth",
+  "val_img_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\data\\dset-s2\\val_scene",
+  "val_mask_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\data\\dset-s2\\val_truth",
+  "patch_size": 256,
+  "train_stride": 128,
+  "val_stride": 256,
+  "band_ids": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "batch_size": 8,
+  "epochs": 40,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "num_workers": 0,
+  "min_water_ratio": 0.001,
+  "empty_patch_keep_prob": 0.2,
+  "early_stopping_patience": 6,
+  "early_stopping_min_delta": 0.0001,
+  "lr_patience": 2,
+  "lr_factor": 0.5,
+  "seed": 42,
+  "experiment_name": "run_20260615_113819",
+  "experiment_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260615_113819",
+  "model_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260615_113819\\best_model.pth",
+  "history_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260615_113819\\history.csv",
+  "config_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260615_113819\\config.json",
+  "pos_weight": 2.6296692168836837
+}

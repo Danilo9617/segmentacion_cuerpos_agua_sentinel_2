@@ -15,9 +15,9 @@ Proyecto para segmentacion semantica de cuerpos de agua usando imagenes Sentinel
 ## Estructura
 
 - `notebook/Sent2_WaterBodies.ipynb`: entrenamiento, evaluacion e inferencia
-- `weights/best_model_water.pth`: mejor checkpoint guardado
-- `train_history_water.csv`: historial de entrenamiento por epoca
-- `Challenge_Tecnico_Segmentacion_Agua_Sentinel2 1.pdf`: enunciado del challenge
+- `experiments/`: carpeta donde se guardan cada experimento de entrenamiento 
+- `weights/`: carpeta opcional para pesos locales fuera del tracking principal
+
 
 ## Instalacion
 
@@ -81,10 +81,18 @@ Abre el notebook y ejecuta las celdas en orden:
 jupyter notebook notebook/Sent2_WaterBodies.ipynb
 ```
 
-El entrenamiento guarda:
+Cada ejecucion de entrenamiento crea automaticamente una carpeta dentro de experiments/ con un identificador unico, por ejemplo:
 
-- mejor modelo en `weights/best_model_water.pth`
-- historial en `train_history_water.csv`
+```text
+  experiments/
+  run_YYYYMMDD_HHMMSS/
+    best_model.pth
+    history.csv
+    config.json
+    pred_mask_example.tif
+```
+De esta forma no se sobrescriben experimentos anteriores y queda trazabilidad de cada ejecución.
+
 
 ## Inferencia
 
