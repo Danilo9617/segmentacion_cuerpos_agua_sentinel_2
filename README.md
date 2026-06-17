@@ -31,7 +31,7 @@ La carpeta data/ está excluida de este repositorio debido a que el volumen tota
 
 Para replicar este entorno localmente y ejecutar el pipeline de entrenamiento, sigue estos pasos:
 
-- Descarga de datos: Obtén el dataset original que contiene tanto las imágenes de Sentinel-2 como sus respectivas máscaras de anotación desde su repositorio oficial en Zenodo: Zenodo Record 5205674.
+- Descarga de datos: Obtén el dataset original que contiene tanto las imágenes de Sentinel-2 como sus respectivas máscaras de anotación desde su repositorio oficial en Zenodo: Zenodo Record 5205674 - https://zenodo.org/records/5205674.
 
 - Estructura local: Descomprime los archivos en la raíz del proyecto asegurándote de mantener la siguiente estructura jerárquica para que el DataLoader mapee y procese los archivos automáticamente:
 
