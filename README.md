@@ -116,13 +116,6 @@ Es importante resaltar que las escenas de `test` en `part5` son mucho más grand
 - Una escena típica de `validation` en este proyecto está alrededor de `700x700` a `1000x900` píxeles.
 - Las escenas de `part5` están en `10980x10980` píxeles.
 
-Ejemplo real:
-
-- `validation`: `S2A_L2A_20190318_N0211_R061_6Bands_S1.tif` tiene `754x697` píxeles.
-- `test`: `sentinel12_s2_82_img.tif` tiene `10980x10980` píxeles.
-
-En cantidad total de píxeles, una escena de `part5` puede ser aproximadamente `229 veces` más grande que una escena típica de validación. Por eso el bloque de test no solo evalúa calidad de segmentación, sino también la capacidad del pipeline para reconstruir escenas Sentinel-2 completas mediante ventanas deslizantes de `256x256`.
-
 ## Inferencia
 
 La inferencia puede hacerse desde el notebook o directamente con:
