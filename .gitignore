@@ -7,7 +7,6 @@ venv/
 data/
 dataset_preprocesado/
 raw_data/
-Bibliografia/
 
 # Pesos del modelo de Deep Learning
 *.pth

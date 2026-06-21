@@ -143,3 +143,20 @@ El script:
 - El criterio de selección del mejor modelo durante entrenamiento es `val_iou`.
 - `inference.py` soporta checkpoints antiguos de 5 canales y checkpoints nuevos de 7 canales.
 - El repositorio no incluye el dataset crudo para mantener liviano el versionado.
+
+## Bibliografía
+
+La carpeta local `Bibliografia/` reúne los artículos y documentos de apoyo consultados durante el desarrollo. En este repositorio esa carpeta está excluida de Git por tamaño, pero localmente se trabajó con archivos como:
+
+- `Bonafilia_Sen1Floods11_A_Georeferenced_Dataset_to_Train_and_Test_Deep_Learning_CVPRW_2020_paper.pdf`
+- `1-s2.0-S0022169426005068-main.pdf`
+- `1-s2.0-S0022169426008097-main.pdf`
+- `1-s2.0-S0022169426009388-main.pdf`
+- `1-s2.0-S0034425723000032-main.pdf`
+- `1-s2.0-S0034425725002810-main.pdf`
+- `1-s2.0-S0924271625002692-main.pdf`
+- `1-s2.0-S0952197623010886-main.pdf`
+- `1-s2.0-S0957417421009386-main.pdf`
+- `1-s2.0-S1569843225003887-main.pdf`
+- `1-s2.0-S1569843226000300-main.pdf`
+- `1-s2.0-S2352711026002463-main.pdf`
