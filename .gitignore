@@ -22,6 +22,8 @@ __pycache__/
 
 # Salidas locales
 pred_mask_example.tif
+experiments/*/inference_outputs/
+experiments/*/test_part5/*.tif
 
 # Documentos privados
 Challenge_Tecnico_Segmentacion_Agua_Sentinel2 1.pdf

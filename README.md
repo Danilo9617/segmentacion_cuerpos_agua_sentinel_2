@@ -1,76 +1,78 @@
-# Segmentacion de Cuerpos de Agua con Sentinel-2
+﻿# Segmentación de Cuerpos de Agua con Sentinel-2
 
-Proyecto para segmentacion semantica de cuerpos de agua usando imagenes Sentinel-2 y una U-Net con backbone `resnet34` en `segmentation_models_pytorch`.
+Proyecto para segmentación semántica de cuerpos de agua usando imágenes Sentinel-2 y una U-Net con backbone `resnet34` en `segmentation_models_pytorch`.
 
 ## Resumen
 
 - Modelo: `U-Net`
 - Backbone: `resnet34`
-- Inicializacion: `encoder_weights=None` (No se utilizaron encoders preentenados - entrenado desde cero)
-- Entrada: 5 canales `Blue`, `Green`, `Red`, `NIR` y `NDWI`
-- Tamano de parche: `256x256`
+- Inicialización: `encoder_weights=None` (entrenamiento desde cero, sin pesos preentrenados)
+- Entrada: 7 canales `Blue`, `Green`, `Red`, `NIR`, `SWIR1`, `SWIR2` y `MNDWI`
+- Tamaño de parche: `256x256`
 - Loss: `0.5 * BCEWithLogitsLoss + 0.5 * DiceLoss`
-- Dispositivo: `CUDA` si esta disponible, si no `CPU`
+- Dispositivo: `CUDA` si está disponible, si no `CPU`
 
 ## Estructura
 
-- `notebook/Sent2_WaterBodies.ipynb`: entrenamiento, evaluacion e inferencia
-- `experiments/`: carpeta donde se guardan cada experimento de entrenamiento 
+- `notebook/Sent2_WaterBodies.ipynb`: entrenamiento, validación, test e inferencia exploratoria
+- `inference.py`: pipeline de inferencia para GeoTIFF completos
+- `experiments/`: historial de corridas, métricas y gráficas
 - `weights/`: carpeta opcional para pesos locales fuera del tracking principal
 
-
-## Instalacion
+## Instalación
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Sobre los datos
+## Datos
 
-La carpeta data/ está excluida de este repositorio debido a que el volumen total del dataset excede los límites recomendados para el control de versiones en GitHub y para optimizar el tiempo de clonación del proyecto.
+La carpeta `data/` no se incluye en el repositorio porque el volumen del dataset excede lo recomendable para GitHub.
 
-Para replicar este entorno localmente y ejecutar el pipeline de entrenamiento, sigue estos pasos:
+El proyecto espera escenas y máscaras organizadas localmente. La descarga del dataset la haces de forma manual desde la fuente correspondiente. Una referencia usada durante el desarrollo fue:
 
-- Descarga de datos: Obtén el dataset original que contiene tanto las imágenes de Sentinel-2 como sus respectivas máscaras de anotación desde su repositorio oficial en Zenodo: Zenodo Record 5205674 - https://zenodo.org/records/5205674.
+- Zenodo Record 5205674: https://zenodo.org/records/5205674
+- Dataset de test externo (`part5`): https://zenodo.org/records/11278238
 
-- Estructura local: Descomprime los archivos en la raíz del proyecto asegurándote de mantener la siguiente estructura jerárquica para que el DataLoader mapee y procese los archivos automáticamente:
-
-## Dataset esperado
-
-El notebook espera la siguiente estructura:
+### Estructura esperada
 
 ```text
-data/dset-s2/
-  tra_scene/
-  tra_truth/
-  val_scene/
-  val_truth/
+data/
+  dset-s2/
+    tra_scene/
+    tra_truth/
+    val_scene/
+    val_truth/
+  part5/
+    71/
+    73/
+    75/
+    ...
 ```
 
-## Descarga y organizacion del dataset
+El notebook también soporta múltiples carpetas de dataset dentro de `data/`, siempre que mantengan la misma estructura interna de `tra_scene`, `tra_truth`, `val_scene` y `val_truth`.
 
-El entrenamiento se apoyo en datos Sentinel-2 etiquetados para segmentacion de agua, almacenados localmente en la carpeta `data/`.
+### Bandas esperadas
 
-El flujo esperado es:
-
-1. Descargar las escenas y mascaras desde la fuente correspondiente.
-2. Organizar los archivos localmente dentro de `data/dset-s2/`.
-3. Mantener separados los subconjuntos `tra_scene`, `tra_truth`, `val_scene` y `val_truth`.
-4. Ejecutar el notebook una vez que esa estructura exista en disco.
-
-Este repositorio no automatiza la descarga del dataset ni publica los archivos pesados dentro de GitHub. La intencion es mantener el repositorio liviano y centrado en la parte reproducible del pipeline de modelado.
-
-Las mascaras se emparejan a partir del nombre del archivo. La inferencia espera que las primeras 4 bandas del `.tif` correspondan a:
+La inferencia espera que el GeoTIFF de entrada tenga estas 6 bandas crudas:
 
 1. Blue
 2. Green
 3. Red
 4. NIR
+5. SWIR1
+6. SWIR2
 
-El quinto canal se calcula en el momento como:
+El índice espectral se calcula sobre la marcha como:
 
 ```text
-NDWI = (Green - NIR) / (Green + NIR + 1e-6)
+MNDWI = (Green - SWIR1) / (Green + SWIR1 + 1e-6)
+```
+
+La normalización usada es:
+
+```text
+reflectancia = valor / 10000.0
 ```
 
 ## Entrenamiento
@@ -81,31 +83,70 @@ Abre el notebook y ejecuta las celdas en orden:
 jupyter notebook notebook/Sent2_WaterBodies.ipynb
 ```
 
-Cada ejecucion de entrenamiento crea automaticamente una carpeta dentro de experiments/ con un identificador unico, por ejemplo:
+Cada entrenamiento crea automáticamente una carpeta nueva dentro de `experiments/`, por ejemplo:
 
 ```text
-  experiments/
+experiments/
   run_YYYYMMDD_HHMMSS/
     best_model.pth
     history.csv
     config.json
-    pred_mask_example.tif
+    val_metrics.csv
+    learning_curves.png
+    confusion_matrix.png
+    precision_recall_curve.png
 ```
-De esta forma no se sobrescriben experimentos anteriores y queda trazabilidad de cada ejecución.
 
+Eso evita sobrescribir corridas anteriores y deja trazabilidad de hiperparámetros, métricas y artefactos.
+
+## Test
+
+El notebook incluye una evaluación sobre escenas externas en `data/part5/` y guarda:
+
+- métricas por escena
+- métricas globales
+- matriz de confusión
+- curva precisión-recall
+- una visualización diagnóstica de ejemplo
+
+### Diferencia entre validation y test
+
+Es importante resaltar que las escenas de `test` en `part5` son mucho más grandes que las escenas usadas normalmente en `validation`.
+
+- Una escena típica de `validation` en este proyecto está alrededor de `700x700` a `1000x900` píxeles.
+- Las escenas de `part5` están en `10980x10980` píxeles.
+
+Ejemplo real:
+
+- `validation`: `S2A_L2A_20190318_N0211_R061_6Bands_S1.tif` tiene `754x697` píxeles.
+- `test`: `sentinel12_s2_82_img.tif` tiene `10980x10980` píxeles.
+
+En cantidad total de píxeles, una escena de `part5` puede ser aproximadamente `229 veces` más grande que una escena típica de validación. Por eso el bloque de test no solo evalúa calidad de segmentación, sino también la capacidad del pipeline para reconstruir escenas Sentinel-2 completas mediante ventanas deslizantes de `256x256`.
 
 ## Inferencia
 
-El notebook ya incluye funciones para:
+La inferencia puede hacerse desde el notebook o directamente con:
 
-- cargar el checkpoint
-- procesar imagenes `.tif`
-- reconstruir la mascara completa por ventanas deslizantes
-- exportar una mascara georreferenciada en formato GeoTIFF
+```bash
+python inference.py --input "data/dset-s2/val_scene/S2A_L2A_20190318_N0211_R061_6Bands_S1.tif" --model "experiments/run_20260620_001244/best_model.pth"
+```
+
+También acepta una carpeta como `data/part5/82` y resuelve automáticamente la imagen `*_img.tif` correspondiente.
+
+El script:
+
+- lee las bandas esperadas
+- normaliza dividiendo por `10000.0`
+- calcula `MNDWI`
+- parte la escena completa en ventanas deslizantes de `256x256`
+- reconstruye el mapa completo de probabilidad
+- exporta máscara binaria GeoTIFF y mapa de probabilidad GeoTIFF
+- guarda un `.json` con el formato de entrada y salida
+- genera un `preview.png` con RGB, predicción y, si existe, máscara real y mapa de errores
 
 ## Notas
 
 - No se usan pesos preentrenados.
-- La normalizacion divide por `10000.0`, asumiendo reflectancia escalada tipica de Sentinel-2.
-- El repositorio no incluye el dataset crudo en Git para no inflar el versionado.
-- La carpeta `data/` debe reconstruirse localmente antes de entrenar o inferir.
+- El criterio de selección del mejor modelo durante entrenamiento es `val_iou`.
+- `inference.py` soporta checkpoints antiguos de 5 canales y checkpoints nuevos de 7 canales.
+- El repositorio no incluye el dataset crudo para mantener liviano el versionado.

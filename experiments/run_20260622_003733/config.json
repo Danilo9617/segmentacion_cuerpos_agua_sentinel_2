@@ -1,0 +1,73 @@
+{
+  "dataset_folders": [
+    "dset-s2",
+    "extra_folder_1",
+    "extra_folder_2"
+  ],
+  "train_img_subdir": "tra_scene",
+  "train_mask_subdir": "tra_truth",
+  "val_img_subdir": "val_scene",
+  "val_mask_subdir": "val_truth",
+  "patch_size": 256,
+  "train_stride": 128,
+  "val_stride": 256,
+  "band_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "band_names": [
+    "Blue",
+    "Green",
+    "Red",
+    "NIR",
+    "SWIR1",
+    "SWIR2"
+  ],
+  "spectral_indices": [
+    "MNDWI"
+  ],
+  "input_features": [
+    "Blue",
+    "Green",
+    "Red",
+    "NIR",
+    "SWIR1",
+    "SWIR2",
+    "MNDWI"
+  ],
+  "input_channels": 7,
+  "architecture": "Unet",
+  "encoder_name": "resnet34",
+  "batch_size": 16,
+  "epochs": 40,
+  "lr": 0.0005,
+  "weight_decay": 0.0001,
+  "num_workers": 0,
+  "min_water_ratio": 0.001,
+  "empty_patch_keep_prob": 0.2,
+  "early_stopping_patience": 6,
+  "early_stopping_min_delta": 0.0001,
+  "lr_patience": 2,
+  "lr_factor": 0.5,
+  "seed": 42,
+  "experiment_name": "run_20260622_003733",
+  "experiment_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733",
+  "model_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\best_model.pth",
+  "history_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\history.csv",
+  "config_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\config.json",
+  "val_metrics_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\val_metrics.csv",
+  "learning_curve_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\learning_curves.png",
+  "confusion_matrix_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\confusion_matrix.png",
+  "pr_curve_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\precision_recall_curve.png",
+  "test_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\test_part5",
+  "test_metrics_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\test_part5\\test_metrics_part5.csv",
+  "test_global_metrics_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\test_part5\\test_global_metrics_part5.csv",
+  "test_confusion_matrix_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\test_part5\\test_confusion_matrix_part5.png",
+  "test_pr_curve_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\test_part5\\test_precision_recall_curve_part5.png",
+  "test_diagnostic_scene_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260622_003733\\test_part5\\test_scene_diagnostic_part5.png",
+  "pos_weight": 2.6296692168836837
+}

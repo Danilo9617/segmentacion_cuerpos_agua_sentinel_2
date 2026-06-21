@@ -1,0 +1,62 @@
+{
+  "train_img_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\data\\dset-s2\\tra_scene",
+  "train_mask_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\data\\dset-s2\\tra_truth",
+  "val_img_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\data\\dset-s2\\val_scene",
+  "val_mask_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\data\\dset-s2\\val_truth",
+  "patch_size": 256,
+  "train_stride": 128,
+  "val_stride": 256,
+  "band_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "band_names": [
+    "Blue",
+    "Green",
+    "Red",
+    "NIR",
+    "SWIR1",
+    "SWIR2"
+  ],
+  "spectral_indices": [
+    "NDWI"
+  ],
+  "input_features": [
+    "Blue",
+    "Green",
+    "Red",
+    "NIR",
+    "SWIR1",
+    "SWIR2",
+    "NDWI"
+  ],
+  "input_channels": 7,
+  "architecture": "Unet",
+  "encoder_name": "resnet34",
+  "batch_size": 16,
+  "epochs": 40,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "num_workers": 0,
+  "min_water_ratio": 0.001,
+  "empty_patch_keep_prob": 0.2,
+  "early_stopping_patience": 6,
+  "early_stopping_min_delta": 0.0001,
+  "lr_patience": 2,
+  "lr_factor": 0.5,
+  "seed": 42,
+  "experiment_name": "run_20260619_190049",
+  "experiment_dir": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260619_190049",
+  "model_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260619_190049\\best_model.pth",
+  "history_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260619_190049\\history.csv",
+  "config_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260619_190049\\config.json",
+  "val_metrics_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260619_190049\\val_metrics.csv",
+  "learning_curve_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260619_190049\\learning_curves.png",
+  "confusion_matrix_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260619_190049\\confusion_matrix.png",
+  "pr_curve_path": "c:\\Users\\Daniel Ortiz\\OneDrive\\Xcalibur\\experiments\\run_20260619_190049\\precision_recall_curve.png",
+  "pos_weight": 2.6296692168836837
+}

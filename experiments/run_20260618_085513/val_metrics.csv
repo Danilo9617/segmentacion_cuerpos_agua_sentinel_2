@@ -1,0 +1,2 @@
+threshold,precision,recall,iou,dice,tp,tn,fp,fn,pr_auc,experiment_name,architecture,encoder_name,band_ids,band_names,spectral_indices,input_features,input_channels
+0.5,0.9737234467071529,0.9859646002461089,0.9604110503314716,0.9798057914120436,6607847,27329564,178317,94064,0.29069705801673046,run_20260618_085513,Unet,resnet34,"1,2,3,4,5,6","Blue, Green, Red, NIR, SWIR1, SWIR2",NDWI,"Blue, Green, Red, NIR, SWIR1, SWIR2, NDWI",7

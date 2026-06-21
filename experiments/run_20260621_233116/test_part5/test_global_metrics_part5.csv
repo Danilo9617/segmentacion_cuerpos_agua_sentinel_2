@@ -1,0 +1,2 @@
+experiment_name,threshold,precision,recall,iou,dice,tp,tn,fp,fn,n_scenes,band_ids,band_names,spectral_indices,input_features,input_channels
+run_20260621_233116,0.5,0.8950693594551068,0.9988339223509519,0.8941350430077207,0.9441090763918422,138467195,799221169,16232766,161652,8,"1,2,3,4,5,6","Blue, Green, Red, NIR, SWIR1, SWIR2",MNDWI,"Blue, Green, Red, NIR, SWIR1, SWIR2, MNDWI",7
