@@ -146,7 +146,7 @@ El script:
 
 ## Bibliografía
 
-La carpeta local `Bibliografia/` reúne los artículos y documentos de apoyo consultados durante el desarrollo. En este repositorio esa carpeta está excluida de Git por tamaño, pero localmente se trabajó con archivos como:
+La carpeta local `Bibliografia/` reúne los artículos y documentos de apoyo consultados durante el desarrollo. 
 
 - `Bonafilia_Sen1Floods11_A_Georeferenced_Dataset_to_Train_and_Test_Deep_Learning_CVPRW_2020_paper.pdf`
 - `1-s2.0-S0022169426005068-main.pdf`
